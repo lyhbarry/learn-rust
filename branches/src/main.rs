@@ -76,6 +76,52 @@ fn main() {
     for number in (1..4).rev() {
         println!("{}", number)
     }
-    
+
     println!("LIFTOFF!!!");
+
+    println!("\nConvert fahrenheit to celsius:");
+    println!("{} celsius", fahrenheit_to_celsius(100 as f32));
+
+    println!("\nFibonacci numbers:");
+    println!("{}", fibonacci(1));
+    println!("{}", fibonacci(3));
+    println!("{}", fibonacci(20));
+
+    println!("\nChristmas carol:");
+    christmas_carol();
+}
+
+fn fahrenheit_to_celsius(temperature: f32) -> f32 {
+    (temperature - 32.0)  * (5.0 / 9.0)
+}
+
+fn fibonacci(n: i32) -> i32 {
+    let mut n1 = 1;
+    let mut n2 = 1;
+    let mut result = 0;
+
+    if n != 1 || n != 2 {
+        let end = n - 2;
+
+        for _i in 0..end {
+            result = n1 + n2;
+            n1 = n2;
+            n2 = result;
+        }
+    }
+    result
+}
+
+fn christmas_carol() {
+    let days = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"];
+    let gifts = ["A partridge in a pear tree", "Two turtle doves", "Three French hens", "Four calling birds", "Five gold rings, badam-pam-pam", "Six geese a laying", "Seven swans a swimming", "Eight maids a milking", "Nine ladies dancing", "Ten lords a leaping", "Eleven pipers piping", "Twelve drummers drumming"];
+
+    for index in 0..12 {
+        println!("On the {} day of Christmas\nMy true love gave to me", days[index]);
+        let toReceive = &gifts[0..index+1];
+        for r in toReceive.iter().rev() {
+            println!("{}", r);
+        }
+        println!("\n");
+    }
 }
